@@ -1,0 +1,215 @@
+                                    C++
+
+Slip 1 - A) Write a C++ program to check maximum and minimum of two integer numbers. (Use Inline function and Conditional operator)
+
+
+#include <iostream>
+using namespace std;
+inline int max(int x, int y) { return (x > y) ? x : y; }
+inline int min(int x, int y) { return (x < y) ? x : y; }
+
+int main() {
+    int num1, num2;
+    cout << "Enter the first number: ";
+    cin >> num1;
+    cout << "Enter the second number: ";
+    cin >> num2;
+    cout << "The maximum of " << num1 << " and " << num2 << " is " << max(num1, num2) << endl;
+    cout << "The minimum of " << num1 << " and " << num2 << " is " << min(num1, num2) << endl;
+    return 0;
+}
+
+
+Slip 1 - B) Create a C++ class MyFile with data membersfile pointer and filename. Write necessary member functions to accept and display File. Overload the following operators: Operator Example Purpose + F3=F1+F2 Concatenate the contents of file F1 and F2 in F3. ! !F3 Changesthe case of alternate characters of file F3.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <istream>
+#include <conio.h>
+#include <ctype.h>
+#include <fstream>
+#include <iostream>
+
+using namespace std;
+
+#include <string.h>
+#define MAXSIZE (10)
+
+class myfile
+{
+    FILE *fp;
+    char fn[MAXSIZE];
+
+public:
+    myfile(const char *fname)
+    {
+        strcpy(fn, fname);
+    }
+    myfile operator+(myfile);
+    void operator!();
+    void display();
+};
+void myfile::display()
+{
+    fp = fopen(fn, "r");
+    char ch;
+    while ((ch = fgetc(fp)) != EOF)
+    {
+        cout << ch;
+    }
+    fclose(fp);
+}
+void myfile::operator!()
+{
+    myfile f4("sy.txt");
+    char ch;
+    fp = fopen(fn, "r");
+    f4.fp = fopen(f4.fn, "w");
+    while ((ch = fgetc(fp)) != EOF)
+    {
+        if (isupper(ch))
+            fputc(tolower(ch), f4.fp);
+        else if (islower(ch))
+            fputc(toupper(ch), f4.fp);
+        else
+            fputc(ch, f4.fp);
+    }
+    fclose(fp);
+    fclose(f4.fp);
+    remove("abc.txt");
+    rename("sy.txt", "abc.txt");
+}
+myfile myfile::operator+(myfile f2)
+{
+    myfile f3("abc.txt");
+    fp = fopen(fn, "r");
+    f2.fp = fopen(f2.fn, "r");
+    f3.fp = fopen(f3.fn, "w");
+    char ch;
+    while ((ch = fgetc(fp)) != EOF)
+    {
+        fputc(ch, f3.fp);
+    }
+    fclose(fp);
+    while ((ch = fgetc(f2.fp)) != EOF)
+    {
+        fputc(ch, f3.fp);
+    }
+    _fcloseall();
+    return f3;
+}
+int main()
+{
+    myfile f1("xyz.txt");
+    myfile f2("lmn.txt");
+    myfile f3("abc.txt");
+
+    cout << "first file \n";
+    f1.display();
+    cout << "\nsecond file \n";
+    f2.display();
+    f3 = f1 + f2;
+    cout << "\nAfter concatnation file is ";
+    f3.display();
+    cout << "\nAfter changes case \n";
+    !f3;
+    f3.display();
+
+    return 0;
+}
+
+                       NODE JS
+
+Slip 1 - A) Create a Node.js file that will convert the output "Hello World!"into upper-case letters.
+
+var http = require('http');
+
+var uc = require('upper-case');
+
+http.createServer(function (req, res) {
+
+  res.writeHead(200, {'Content-Type': 'text/html'});
+
+  res.write(uc.upperCase("Hello World!"));
+
+  res.end();
+
+
+}).listen(8080);
+
+
+
+Slip 1 - B) Create a Node.js file that demonstrate create database student DB and student table (Rno, Sname, Percentage ) in MySQL.
+ Solution:
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+
+  host: "localhost",
+
+  user: "root",
+
+  password: "root"
+
+});
+
+con.connect(function(err) {
+
+  if (err) throw err;
+
+  console.log("Connected!");
+
+  con.query("CREATE DATABASE studentdb", function (err, result) {
+
+    if (err) throw err;
+
+    console.log("Database created");
+
+  });
+
+});
+
+create_table.js
+
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+
+  host: "localhost",
+
+  user: "root",
+
+  password: "root",
+
+  database: "studentdb"
+
+});
+
+con.connect(function(err) {
+
+  if (err) throw err;
+
+  console.log("Connected!");
+
+
+
+  var sql = "CREATE TABLE student(rollno int,name VARCHAR(255), percentage double)";
+
+  con.query(sql, function (err, result) {
+
+    if (err) throw err;
+
+    console.log("Table created");
+
+  });
+
+
+});
+
+
+Initiate :
+
+C:\Users\Your Name>node create_db.js
+
+ C:\Users\Your Name>node create_table.js

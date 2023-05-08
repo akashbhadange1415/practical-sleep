@@ -1,0 +1,367 @@
+  			
+
+					C++
+
+Slip 7 -
+ A) Write a C++ program using class with data member char str[50] and function replace (char ch 1, char ch2) every 
+occurrence of chl in str should be replaced with ch2 and return number of replacement it makes use default value for char
+ ch2. (Use ch2 as Default Argument)
+ 
+Solution:
+#include<conio.h>
+
+#include<iostream.h>
+
+#include<string.h>
+
+class mystr
+
+{
+
+public:int replace(char *str,char,char);
+
+};
+
+int mystr::replace(char *str,char(),char c2='r')
+
+{
+
+while(str!='\0')
+
+{
+
+if(*str==c1)
+
+{
+
+*str==c2;
+
+n++;
+
+}
+
+str++;
+
+i++;
+
+}
+
+str=str-i;
+
+return n;
+
+}
+
+int main()
+
+{
+
+mystr m;
+
+char *str,c1,c2;
+
+clrscr();
+
+cout<<"Enter string";
+
+cin>>str;
+
+cout<<"Enter character which is to replace";
+
+cin>>a;
+
+cout<<"Number of replacement="<<m.replace(str,c1,c2);
+
+cout<<"After replacement string is ="<<str;
+
+getch();
+
+return 0;
+}
+
+
+
+
+Slip 7 - 
+
+B) Create a C++ class Vector with data members size & pointer to integer. The size of the vector varies so the memory should 
+be allocated dynamically. Perform following operations: i. Accept a vector ii. Display a vector in the format (10, 20, 30,....) 
+iii. Calculate union of two vectors. (use parameterized constructor & copy constructor)
+ 
+Solution:
+#include<conio.h>
+
+#include<iostream.h>
+
+class vector
+
+{
+
+int *a,*b;
+
+int n,   n1;
+
+public:
+
+void create()
+
+{
+
+int i,j;
+
+cout<<"\nEnter the dimensions of the vector space: ";
+
+cin>>n;
+
+a=new int[n];
+
+cout<<"\nEnter First the vector: ";
+
+for(i=0;i<n;i++)
+
+{
+
+cin>>a[i];
+
+}
+
+cout<<"\nEnter the dimensions of the vector space: ";
+
+cin>>n1;
+
+b=new int[n1];
+
+cout<<"\nEnter Second the vector: ";
+
+for(j=0;j<n1;j++)
+
+{
+
+cin>>b[j];
+
+}
+
+}
+
+void display()
+
+{
+
+int i,j;
+
+cout<<"\n The First vector is: (";
+
+for(i=0;i<n-1;i++)
+
+{
+
+cout<<a[i]<<",";
+
+}
+
+cout<<a[n-1]<<")";
+
+cout<<"\n The Second vector is: (";
+
+for(j=0;j<n1-1;j++)
+
+{
+
+cout<<b[j]<<",";
+
+}
+
+cout<<b[n1-1]<<")";
+
+}
+
+ };
+
+ void main()
+
+{
+
+vector v;
+
+clrscr();
+
+int ch;
+
+do
+
+{
+
+cout<<"\n 1.Accpet vector \n 2.Display Vetor \n Union";
+
+cout<<"\n Enter choice : ";
+
+cin>>ch;
+
+switch(ch)
+
+{
+
+case 1 : v.create();
+
+            break;
+
+case 2 : v.display();
+
+            break;
+
+case 3:
+
+vector<int> v(10);
+
+vector<int>::iterator st;
+
+sort (a[i], a[i] + 3);//3 element
+
+sort (b[j], b[j] + 3);
+
+st = set_union(a[i], a[i] + 3, b[j], b[j] + 3, v.begin());
+
+v.resize(st - v.begin());
+
+cout<<"The union between the sets has "<< (v.size())<< " elements: "<<endl;
+
+for (st = v.begin(); st != v.end(); ++st)
+
+cout<< *st<<" ";
+
+  break;
+
+}
+
+}while(ch!=3);
+
+getch();
+
+ }
+
+					Node Js
+
+Slip 7 -
+ A) Using Node.js create a web page to read two file names from user and append contents of first file into second file.
+
+Solution:
+var fs=require('fs');
+ 
+fs.appendFile('f1.txt','f2.txt',
+function(err){
+if(err) throw err;
+console.log('Updated');
+});
+
+
+
+f1.txt
+
+"Welcome to BBA(CA)
+
+f2.txt
+
+BBA(CA) Department
+
+
+
+Slip 7 - 
+
+B) Create a Node,js file that Select all records from the "customers" table, and display the result object on console.
+
+Solution:
+ var mysql = require('mysql');
+
+
+
+var con = mysql.createConnection({
+
+  host: "localhost",
+
+  user: "root",
+
+  password: "",
+
+  database: "customer_DB"
+
+});
+
+
+con.connect(function(err) {
+
+  if (err) throw err;
+
+  console.log("Connected!");
+
+/* for creating Database and tables
+
+
+//database creation
+
+//   con.query("CREATE DATABASE customer_DB", function (err, result) {
+
+//     if (err) throw err;
+
+//     console.log("Database created");
+
+//   });
+
+             //table create
+
+// var table = "CREATE TABLE customer (cid int,name VARCHAR(255), city VARCHAR(255))";
+
+//   con.query(table, function (err, result) {
+
+//     if (err) throw err;
+
+//     console.log("Table created");
+
+//   });
+
+
+    //data insert
+
+var data1 = "INSERT INTO customer (cid, name, city) VALUES (1,’Shamal', 'Pune')";
+
+var data2 = "INSERT INTO customer (cid, name, city) VALUES (2,'Rutuja', 'Mumbai')";
+
+var data3 = "INSERT INTO customer2 (cid, name, city) VALUES (3,'Seema', 'Nagpur')";
+
+
+con.query(data1, function (err, result) {
+
+  if (err) throw err;
+
+  console.log( "no. 1 record inserted");
+
+});
+
+con.query(data2, function (err, result) {
+
+  if (err) throw err;
+
+  console.log( "no. 2 record inserted");
+
+});
+
+con.query(data3, function (err, result) {
+
+  if (err) throw err;
+
+  console.log( "no. 3 record inserted");
+
+});
+
+*/
+
+con.query("SELECT * FROM customer", function (err, result, fields) {
+
+    if (err) throw err;
+
+    console.log(result);
+
+  });
+
+
+});
+
